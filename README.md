@@ -8,7 +8,7 @@
                                                                                 
 ```
 
-![Example](https://github.com/Rebell81/keenetic-grafana-monitoring/blob/3abd06620599c814b98dcc39e3c7cb8b3f0c6423/sample.png)
+![Example](https://github.com/Rebell81/Keenetic-Grafana/blob/b1b2c8a13ee9967d1e20c4161365f86b55a80ac3/sample.png)
 # Supported routers
 
 Tested with KeeneticOS 3.5+
