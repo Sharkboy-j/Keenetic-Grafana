@@ -27,7 +27,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v3
         with:
-          images: techh/keenetic-grafana-monitoring
+          images: sharkboy/keenetic-grafana-monitoring
           tags: |
             type=ref,event=branch
             type=semver,pattern={{version}}
