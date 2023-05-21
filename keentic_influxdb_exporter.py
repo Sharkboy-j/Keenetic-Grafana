@@ -32,13 +32,18 @@ class KeeneticCollector(object):
         self._keenetic_client = keenetic_client
         self._command: str = metric_configuration['command']
         self._params = metric_configuration.get('param', {})
+        self._post = metric_configuration.get('post')
         self._root = parse(metric_configuration['root'])
         self._tags = json_path_init(metric_configuration['tags'])
         self._values = json_path_init(metric_configuration['values'])
 
     def collect(self) -> List[dict]:
         try:
-            response = self._keenetic_client.metric(self._command, self._params)
+            if self._post is None :
+                response = self._keenetic_client.metric(self._command, self._params)
+            else :
+                response = self._keenetic_client.metricP(self._command, self._params, self._post)
+
         except KeeneticApiException as e:
             logging.warning(f"Skipping metric '{self._command}' collection. Reason keenetic api exception, "
                             f"status: {e.status_code}, response: {e.response_text}")
@@ -68,7 +73,7 @@ class KeeneticCollector(object):
 
             if values.__len__() == 0:
                 continue
-
+                
             metric = self.create_metric(self._command, tags, values)
             # print(json.dumps(metric))
             metrics.append(metric)

@@ -30,7 +30,23 @@
         "uptime": "$.uptime",
         "signal": "$.rssi",
         "speed": "$.speed",
-        "active": "$.active"
+        "active": "$.active",
+        "link": "$.link"
+      }
+    },
+    {
+      "command": "ip hotspot",
+      "root" : "$.*.host.[*]",
+      "post" : "eyJzdW1tYXJ5Ijp7ImF0dHJpYnV0ZSI6InN1bXNwZWVkIn19",
+      "tags" : {
+        "name" : "$.name",
+        "active": "$.active",
+        "mac": "$.mac"
+      },
+      "values" : {
+        "sumspeed": "$.sumspeed",
+        "rxspeed": "$.rxspeed",
+        "txspeed": "$.txspeed"
       }
     },
     {
@@ -41,6 +57,7 @@
         "type": "$.type",
         "description": "$.description",
         "interface-name": "$.interface-name",
+        "name": "$.name",
         "address": "$.address"
       },
       "values" : {
@@ -96,7 +113,7 @@
       "command": "interface stat",
       "root" : "$",
       "param" : {
-        "name" : "ISP"
+        "name" : "PPPoE0"
       },
       "tags" : {},
       "values" : {
@@ -110,7 +127,7 @@
       "command": "interface stat",
       "root" : "$",
       "param" : {
-        "name" : "AccessPoint"
+        "name" : "PPPoE1"
       },
       "tags" : {},
       "values" : {
@@ -124,35 +141,7 @@
       "command": "interface stat",
       "root" : "$",
       "param" : {
-        "name" : "AccessPoint_5G"
-      },
-      "tags" : {},
-      "values" : {
-        "rxbytes": "$.rxbytes",
-        "txbytes": "$.txbytes",
-        "rxspeed": "$.rxspeed",
-        "txspeed": "$.txspeed"
-      }
-    },
-    {
-      "command": "interface stat",
-      "root" : "$",
-      "param" : {
-        "name" : "GigabitEthernet0"
-      },
-      "tags" : {},
-      "values" : {
-        "rxbytes": "$.rxbytes",
-        "txbytes": "$.txbytes",
-        "rxspeed": "$.rxspeed",
-        "txspeed": "$.txspeed"
-      }
-    },
-    {
-      "command": "interface stat",
-      "root" : "$",
-      "param" : {
-        "name" : "PPTP0"
+        "name" : "OpenVPN0"
       },
       "tags" : {},
       "values" : {

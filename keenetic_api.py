@@ -1,10 +1,13 @@
+import logging
 import hashlib
+import base64
 from hashlib import sha256
 from typing import Dict
 from urllib import parse
 
 from requests import Session
 
+logging.basicConfig(level='INFO', format='%(asctime)s - %(filename)s - %(levelname)s - %(message)s')
 
 class KeeneticClient:
 
@@ -47,6 +50,20 @@ class KeeneticClient:
                 params)
             r = self._session.get(url)
             if r.status_code == 200:
+                logging.info(r)
+                return r.json()
+            raise KeeneticApiException(r.status_code, r.text)
+        else:
+            raise ConnectionError(f"No keenetic connection.")
+
+    def metricP(self, command: str, params: Dict, post: str) -> Dict:
+        if self._auth():
+            url = f"{self._admin_endpoint}/rci/show/{command.replace(' ', '/')}"
+            decSet = base64.b64decode(post).decode('utf-8')
+            dec = str(decSet)
+            r = self._session.post(url, data = decSet)
+            if r.status_code == 200:
+                logging.info(r)
                 return r.json()
             raise KeeneticApiException(r.status_code, r.text)
         else:
