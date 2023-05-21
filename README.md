@@ -8,8 +8,7 @@
                                                                                 
 ```
 
-![Example](https://user-images.githubusercontent.com/2773025/88829802-c5809900-d1d5-11ea-8cbe-de41118387b3.png)
-
+![Example](https://github.com/Rebell81/keenetic-grafana-monitoring/blob/3abd06620599c814b98dcc39e3c7cb8b3f0c6423/sample.png)
 # Supported routers
 
 Tested with KeeneticOS 3.5+
@@ -115,7 +114,8 @@ services:
 * Install Python `opkg install python3 python3-pip`
 * Install dependencies ` pip install -r requirements.txt`
 * Create script for autorun `/opt/etc/init.d/S99keeneticgrafana`
-
+* `chmod +x /opt/etc/init.d/S99keeneticgrafana`
+* 
 ```$bash
 #!/bin/sh
 
