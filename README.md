@@ -44,7 +44,7 @@ password=<pass>
 interval_sec=30
 ```
 
-* Copy [metrics.json](https://github.com/vitaliy-sk/keenetic-grafana-monitoring/blob/master/config/metrics.json) and edit (Optional)
+* Copy [metrics.json](https://github.com/Rebell81/keenetic-grafana-monitoring/blob/master/config/metrics.json) and edit (Optional)
 
 * Create admin user (Users and access -> Create user, allow 'Web interface' and 'Prohibit saving system settings') 
 
@@ -64,8 +64,6 @@ Update `conifg.ini`
 [keenetic]
 skip_auth=true
 ```
-
-* Import Grafana dashboard from [grafana.com](https://grafana.com/grafana/dashboards/12723)
 
 # Run
 
