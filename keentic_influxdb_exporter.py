@@ -127,7 +127,11 @@ if __name__ == '__main__':
         wait_interval = config['collector'].getint('interval_sec')
         logging.info(f"Configuration done. Start collecting with interval: {wait_interval} sec")
         while True:
-            for collector in collectors:
-                metrics = collector.collect()
-                infuxdb_writer.write_metrics(metrics)
+            try:
+                for collector in collectors:
+                    metrics = collector.collect()
+                    infuxdb_writer.write_metrics(metrics)
+            except:
+                print("An exception occurred")
             time.sleep(wait_interval)
+           
