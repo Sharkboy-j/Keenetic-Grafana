@@ -13,6 +13,34 @@ def isinteger(value: str): return re.match(r'^\d+$', value) is not None
 
 def isvalidmetric(value): return isinstance(value, int) or isinstance(value, float) or isinstance(value, bool)
 
+def is_temperature(value: str) -> bool:
+    pattern = r'^-?\d+(?:\.\d+)?\s*\(?[CFK]\)?$'
+    return re.match(pattern, value) is not None
+
+def is_voltage(value: str) -> bool:
+    # Регулярное выражение для напряжения (V)
+    return re.match(r'^-?\d+(?:\.\d+)?\s*\(?V\)?$', value) is not None
+
+def is_current(value: str) -> bool:
+    # Регулярное выражение для тока (mA)
+    return re.match(r'^-?\d+(?:\.\d+)?\s*\(?mA\)?$', value) is not None
+
+def is_power(value: str) -> bool:
+    # Регулярное выражение для мощности (dBm)
+    return re.match(r'^-?\d+(?:\.\d+)?\s*\(?dBm\)?$', value) is not None
+
+def extract_number(value: str) -> float:
+    match = re.search(r'-?\d+(?:\.\d+)?', value)
+    if match:
+        return float(match.group())  # Преобразуем найденное число в float
+    else:
+        raise ValueError("No numeric value found in the string")
+
+def extract_number_with_unit(value: str, unit: str) -> float:
+    if re.search(r'\(?' + re.escape(unit) + r'\)?', value):
+        return extract_number(value)
+    else:
+        raise ValueError(f"The string does not contain the unit '{unit}'")
 
 type_mapping = {
     "yes": 1,
@@ -50,8 +78,13 @@ def parse_string(value):
     elif isfloat(value):
         value = float(value)
 
+
     return value
 
 
-def remove_data_unit(value: str):
-    return value.replace(" kB", "")
+#def remove_data_unit(value: str):
+#    return value.replace(" kB", "")
+def remove_data_unit(value: str) -> str:
+    # Регулярное выражение для удаления единиц измерения
+    pattern = r'\s*\(?(C|V|mA|dBm|mW)\)?'
+    return re.sub(pattern, '', value)

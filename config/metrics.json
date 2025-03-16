@@ -13,6 +13,25 @@
       }
     },
     {
+      "command": "interface",
+      "root" : "$",
+      "param" : {
+        "name" : "GigabitEthernet0/8"
+      },
+      "tags" : {},
+      "values" : {
+        "temperature": "$.sfp.temperature",
+        "vcc": "$.sfp.vcc",
+        "tx-bias": "$.sfp.tx-bias",
+        "tx-power": "$.sfp.tx-power",
+        "tx-power-mw": "$.sfp.tx-power-mw",
+        "rx-power": "$.sfp.rx-power",
+        "rx-power-mw": "$.sfp.rx-power-mw",
+        "wave-length": "$.sfp.fibre.wave-length",
+        "bitrate": "$.sfp.bitrate"
+      }
+    },
+    {
       "command": "ip hotspot",
       "root" : "$.host[*]",
       "tags" : {
